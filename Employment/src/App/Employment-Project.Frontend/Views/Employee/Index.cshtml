@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Employment_Project.Frontend.Models.ViewModel.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div>
+    <h1 class=" text-center mb-3">Employee Information</h1>
+
+    <p>
+        <a class=" btn btn-primary " asp-action="AddorEdit"><i class="fa-solid fa-plus"></i> Create New</a>
+    </p>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Gender</th>
+                <th>Joining Date</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Department</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.joiningDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.country.countryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.state.stateName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.city.cityName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.department.departmentName)
+                    </td>
+                    <td style="width: 200px;">
+                        <a class=" btn btn-success" href="Employee/AddorEdit/@item.id"><i class="fa-solid fa-pen-to-square"></i> Edit</a> |
+                        <a class="delete-button btn btn-danger" href="Employee/Delete/@item.id" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fa-solid fa-trash"></i> Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+     </table>
+
+</div>
+

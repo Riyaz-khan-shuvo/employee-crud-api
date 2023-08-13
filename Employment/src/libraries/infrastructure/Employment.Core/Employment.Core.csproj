@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.6.0" />
+    <PackageReference Include="MediatR" Version="12.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\domain\Employment.Model\Employment.Model.csproj" />
+    <ProjectReference Include="..\..\domain\Employment.Repositories\Employment.Repositories.csproj" />
+    <ProjectReference Include="..\Employment.Service.Models\Employment.Service.Models.csproj" />
+  </ItemGroup>
+
+</Project>

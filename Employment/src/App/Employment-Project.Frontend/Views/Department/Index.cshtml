@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Employment_Project.Frontend.Models.ViewModel.Department>
+
+@{
+    ViewData["Title"] = "Index";
+    int idno = 1;
+}
+
+<div class="container">
+
+    <p class="text-center">
+        <a class=" btn btn-primary " asp-action="AddorEdit"><i class="fa-solid fa-plus"></i> Create New</a>
+    </p>
+
+    <div class="text-center">
+
+
+        <table class="table mx-auto text-center w-50 table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Department Name
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @idno
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.departmentName)
+                        </td>
+                        <td class="text-end">
+
+                            <a class=" btn btn-primary" href="Department/AddorEdit/@item.id"><i class="fa-solid fa-pen-to-square"></i> Edit</a> |
+
+                            <a class="delete-button btn btn-danger" href="Department/Delete/@item.id" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fa-solid fa-trash"></i> Delete</a>
+
+                        </td>
+                    </tr>
+
+                    idno++; // Increment the idno after each iteration
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

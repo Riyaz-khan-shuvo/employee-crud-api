@@ -1,0 +1,31 @@
+﻿@model Employment_Project.Frontend.Models.ViewModel.Department
+
+@{
+    ViewData["Title"] = "AddorEdit";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="AddorEdit" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.HiddenFor(model => model.id)
+                <div class="form-group">
+                    <label class="control-label">Department Name</label>
+                    <input asp-for="departmentName" class="form-control w-50" />
+                    <span asp-validation-for="departmentName" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

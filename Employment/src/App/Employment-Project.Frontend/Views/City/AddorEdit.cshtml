@@ -1,0 +1,39 @@
+﻿@model Employment_Project.Frontend.Models.ViewModel.City
+
+@{
+    ViewData["Title"] = "AddorEdit";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="AddorEdit" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.HiddenFor(model => model.id)
+
+                <div class="form-group mb-3">
+                    <label class="control-label">Sate Name</label>
+                    <select asp-for="stateId" asp-items="@(ViewBag.StateId)" class="form-select ">
+                        <option selected>--Select Sate Name--</option>
+                       
+                        
+                    </select>
+                    <span asp-validation-for="cityName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="control-label">City Name</label>
+                    <input asp-for="cityName" class="form-control" />
+                    <span asp-validation-for="cityName" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

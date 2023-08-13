@@ -1,0 +1,213 @@
+﻿@model Employment_Project.Frontend.Models.ViewModel.Employee
+
+@{
+    ViewData["Title"] = "AddorEdit";
+}
+
+<div class=" container border border-success-subtle">
+
+    <h4 class=" text-center bg-dark text-white p-5 mt-2">Employee Form</h4>
+    <hr />
+    <div class="row">
+        <form asp-action="AddorEdit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row mb-3">
+                        <label class="col-md-3 col-form-label"> Name</label>
+                        <div class="col-md-9">
+                            <input asp-for="name" class="form-control" />
+                            <span asp-validation-for="name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-md-3 col-form-label">Gender</label>
+                        <div class="col-md-9 pt-2">
+                            <label class="radio-inline mx-2">
+                                @Html.RadioButtonFor(model => model.gender, "Male", htmlAttributes: new { @class = "form-check-input" }) Male
+                            </label>
+                            <label class="radio-inline mx-2">
+                                @Html.RadioButtonFor(model => model.gender, "Female", htmlAttributes: new { @class = "form-check-input" }) Female
+                            </label>
+                            <label class="radio-inline mx-2">
+                                @Html.RadioButtonFor(model => model.gender, "Other", htmlAttributes: new { @class = "form-check-input" }) Other
+                            </label>
+                            <br />
+                            <span asp-validation-for="gender" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-md-3 col-form-label">Education</label>
+                        <div class="col-md-9 pt-2">
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" asp-for="sSC" />
+                                <label class="form-check-label" asp-for="sSC">
+                                    SSC
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" asp-for="hSC" />
+                                <label class="form-check-label" asp-for="hSC">
+                                    HSC
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" asp-for="bSC" />
+                                <label class="form-check-label" asp-for="bSC">
+                                    BSC
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" class="form-check-input" asp-for="mSC" />
+                                <label class="form-check-label" asp-for="mSC">
+                                    MSC
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-md-3 col-form-label">Address</label>
+                        <div class="col-md-9">
+                            <textarea asp-for="address" class="form-control"></textarea>
+                            <span asp-validation-for="address" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-md-3 col-form-label"> Department</label>
+                        <div class="col-md-9">
+                            <select asp-for="departmentId" asp-items="@(ViewBag.DeptId)" class="form-control">
+                                <option value="">--Select Department--</option>
+                            </select>
+                            <span asp-validation-for="cityId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-md-3 col-form-label">Country</label>
+                        <div class="col-md-9">
+                            <select asp-for="countryId" class="form-control" asp-items="ViewBag.countryId">
+                                <option value="">--Select Country--</option>
+                            </select>
+                            <span asp-validation-for="countryId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-md-3 col-form-label"> State</label>
+                        <div class="col-md-9">
+                            <select asp-for="stateId" asp-items="@(ViewBag.StateId)" class="form-control">
+                                <option value="">--Select State--</option>
+                            </select>
+                            <span asp-validation-for="stateId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-md-3 col-form-label"> City</label>
+                        <div class="col-md-9">
+                            <select asp-for="cityId" asp-items="@(ViewBag.CityId)" class="form-control">
+                                <option value="">--Select City--</option>
+                            </select>
+                            <span asp-validation-for="cityId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    
+
+                    <div class="row mb-3">
+                        <label class="col-md-3 col-form-label">Joining Date</label>
+                        <div class="col-md-9">
+                            <input asp-for="joiningDate" type="date" class="form-control" />
+                            <span asp-validation-for="joiningDate" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="row mb-3">
+                        <label class="col-md-3 col-form-label">Picture</label>
+                        <div class="col-md-9">
+                            <input type="file" asp-for="picture" class="form-control" name="pictureFile" accept="image/*" id="FileUpload" onchange="PreviewImage()" />
+                            <span asp-validation-for="picture" class="text-danger"></span>
+                        </div>
+                        <div class="mt-3" style="text-align:end">
+                            <img src="~/images/@Model.picture" alt="img" id="UploadFile" class="img-thumbnail" style="width:170px;" />
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-3 mb-5">
+                    <a class="btn btn-info btn-sm" asp-action="Index">Back to List</a>
+                    <button type="submit" class="btn btn-primary btn-sm "><i class="fa-solid fa-check"></i> Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
+
+
+
+
+@section Scripts {
+
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('#countryId').change(function () {
+                $.ajax({
+                    type: "get",
+                    url: "/Employee/StateDropdownData",
+                    data: { countryId: $('#countryId').val() },
+                    datatype: "json",
+                    traditional: true,
+                    success: function (data) {
+                        var state = "<select id='stateId'>";
+                        state = state + '<option value="">Select State</option>';
+                        for (var i = 0; i < data.length; i++) {
+                            state = state + '<option value=' + data[i].id + '>' + data[i].stateName + '</option>';
+                        }
+                        state = state + '</select>';
+                        $('#stateId').html(state);
+                    }
+                });
+            });
+
+            // Get Cities by State ID
+            $('#stateId').change(function () {
+                $.ajax({
+                    type: "get",
+                    url: "/Employee/CityDropdownData",
+                    data: { stateId: $('#stateId').val() },
+                    datatype: "json",
+                    traditional: true,
+                    success: function (data) {
+                        var city = "<select id='cityId'>";
+                        city = city + '<option value="">Select City</option>';
+                        for (var i = 0; i < data.length; i++) {
+                            city = city + '<option value=' + data[i].id + '>' + data[i].cityName + '</option>';
+                        }
+                        city = city + '</select>';
+                        $('#cityId').html(city);
+                    }
+                });
+            });
+        });
+
+        function PreviewImage() {
+            var oFReader = new FileReader();
+            oFReader.readAsDataURL(document.getElementById("FileUpload").files[0]);
+
+            oFReader.onload = function (oFREvent) {
+                document.getElementById("UploadFile").src = oFREvent.target.result;
+            };
+        };
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

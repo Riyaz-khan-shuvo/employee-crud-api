@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Employment_Project.Frontend.Models.ViewModel.Country>
+
+@{
+    ViewData["Title"] = "Index";
+    int idno = 1;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+</head>
+<body>
+
+    <div class="container border mt-5 p-3">
+    <table id="countryTable" class="table  table-striped table-responsive" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Country Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@idno</td>
+                    <td>@Html.DisplayFor(modelItem => item.countryName)</td>
+                    <td>
+                        <a class="btn btn-primary" href="Country/AddorEdit/@item.id"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                        <a class="delete-button btn btn-danger" href="Country/Delete/@item.id" onclick="return confirm('Are you sure you want to delete this item?');"><i class="fa-solid fa-trash"></i> Delete</a>
+                    </td>
+                </tr>
+                idno++;
+            }
+        </tbody>
+    </table>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        new DataTable('#countryTable');
+    </script>
+
+</body>
+</html>
